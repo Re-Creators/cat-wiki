@@ -1,25 +1,33 @@
-import logo from './logo.svg';
-import './App.css';
+import styled from "styled-components";
+import Footer from "./components/Footer";
+import Logo from "./components/Logo";
+import Home from "./pages/Home";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import BreedInfo from "./pages/BreedInfo";
+import MostSearched from "./pages/MostSearched";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <StyledContainer>
+      <BrowserRouter>
+        <Logo />
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/breed/:id" element={<BreedInfo />} />
+          <Route path="/most-searched" element={<MostSearched />} />
+        </Routes>
+      </BrowserRouter>
+      <Footer />
+    </StyledContainer>
   );
 }
 
 export default App;
+
+const StyledContainer = styled.div`
+  padding: 1rem 1rem 0 1rem;
+
+  @media (min-width: 1400px) {
+    padding: 3rem 5rem 0 5rem;
+  }
+`;
